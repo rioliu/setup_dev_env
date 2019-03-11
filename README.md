@@ -103,6 +103,29 @@ Project contains the scripts/resources can be used to setup dev environment
           source  $(brew --prefix bash-completion)/etc/bash_completion.d/kubectl
           
 ## Useful Applications
+
 * Vnc Viewer
 
-https://www.realvnc.com/en/connect/download/viewer/
+      https://www.realvnc.com/en/connect/download/viewer/
+      
+* Proxifier
+
+      https://www.proxifier.com/
+      
+* SQL Developer
+
+      https://www.oracle.com/technetwork/developer-tools/sql-developer/downloads/index.html
+      
+* JXplorer (LDAP client)
+
+      http://jxplorer.org/
+
+* PostMan
+
+      https://www.getpostman.com/
+
+* Swagger (OPEN API)
+
+      https://swagger.io/
+
+
