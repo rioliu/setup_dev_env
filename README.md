@@ -42,6 +42,7 @@ Project contains the scripts/resources can be used to setup dev environment
   - `Lombok PLugin`
   - `BashSupport`
   - `Handlebars/Mustache`
+  - `Kubernetes`
 
 * import `IntelliJ IDEA` code style and file template
 
@@ -73,6 +74,8 @@ Project contains the scripts/resources can be used to setup dev environment
     BracketHighlighter
     Dockerfile Syntax Highlighting
     YAML Nav
+    Kubernetes Manifest autocomplete
+    sublime-kubernetes-snippets (https://github.com/songjiz/sublime-kubernetes-snippets)
  
  * install `iTerm2` color themes
    
@@ -91,16 +94,17 @@ Project contains the scripts/resources can be used to setup dev environment
           export LSCOLORS=ExFxCxDxBxegedabagacad
           alias ll="ls -l"
           
-          if [ -f $(brew --prefix)/etc/bash_completion ]; then
-              source $(brew --prefix)/etc/bash_completion
-          fi
-          
           # generate kubectl bash-completion file
           if [ ! -e $(brew --prefix bash-completion)/etc/bash_completion.d/kubectl ]; then
               kubectl completion bash > $(brew --prefix bash-completion)/etc/bash_completion.d/kubectl
           fi
           
-          source  $(brew --prefix bash-completion)/etc/bash_completion.d/kubectl
+          export BASH_COMPLETION_DIR=$(brew --prefix bash-completion)/etc/bash_completion.d
+          
+          if [ -f $(brew --prefix bash-completion)/etc/bash_completion ]; then
+              source $(brew --prefix bash-completion)/etc/bash_completion
+          fi
+          
           
 ## Useful Applications
 
