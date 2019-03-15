@@ -131,5 +131,9 @@ Project contains the scripts/resources can be used to setup dev environment
 * Swagger (OPEN API)
 
       https://swagger.io/
+      
+* Xnip
+
+      https://xnipapp.com/
 
 
