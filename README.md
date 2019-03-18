@@ -88,22 +88,23 @@ Project contains the scripts/resources can be used to setup dev environment
  
  * configure ~/.bash_profile
  
-          export PS1="[\u@\h \W]\$ "
+          export PS1="[\[\e[32m\]\u\[\e[m\]@\[\e[36m\]\h\[\e[m\]:\W]$ "
           export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
           export CLICOLOR=1
           export LSCOLORS=ExFxCxDxBxegedabagacad
           alias ll="ls -l"
           
-          # generate kubectl bash-completion file
-          if [ ! -e $(brew --prefix bash-completion)/etc/bash_completion.d/kubectl ]; then
-              kubectl completion bash > $(brew --prefix bash-completion)/etc/bash_completion.d/kubectl
-          fi
-          
-          export BASH_COMPLETION_DIR=$(brew --prefix bash-completion)/etc/bash_completion.d
-          
-          if [ -f $(brew --prefix bash-completion)/etc/bash_completion ]; then
-              source $(brew --prefix bash-completion)/etc/bash_completion
-          fi
+          [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
+
+         # generate kubectl bash-completion file
+         if [[ (! -e $(brew --prefix bash-completion)/etc/bash_completion.d/kubectl) && (-f /usr/local/bin/kubectl) ]]; then
+            kubectl completion bash > $(brew --prefix bash-completion)/etc/bash_completion.d/kubectl
+         fi
+
+         if [ -f $(brew --prefix bash-completion)/etc/bash_completion.d/kubectl ]; then
+            . $(brew --prefix bash-completion)/etc/bash_completion.d/kubectl
+         fi          
           
           
 ## Useful Applications
