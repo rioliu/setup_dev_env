@@ -11,10 +11,8 @@ brew install maven
 brew install swagger-codegen
 brew install kubernetes-cli
 brew install nmap
-brew install https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb
+brew install sshpass
 brew install python3
-brew install base64
-brew install docker-machine-driver-hyperkit
 brew install groovy
 
 
