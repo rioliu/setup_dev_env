@@ -35,6 +35,25 @@ Project contains the scripts/resources can be used to setup dev environment
 
       https://hub.docker.com/editions/community/docker-ce-desktop-mac
       
+* install and configure `Claude Code`
+
+      ./setup_dev_env/macOS/claude_code/install.sh
+      
+  Copy config files to home directory:
+      
+      cp macOS/claude_code/settings.json ~/.claude/settings.json
+      cp macOS/claude_code/mcp.json ~/.claude/mcp.json
+      
+  Default backend is DeepSeek V4. To switch to GLM:
+      
+      claude --settings ~/.claude/settings.json --settings macOS/claude_code/profiles/glm.json
+      
+  Required shell env vars (add to ~/.zprofile):
+      
+      export DEEPSEEK_API_KEY="sk-..."
+      export ZHIPU_API_KEY="..."
+      export GITHUB_PERSONAL_ACCESS_TOKEN="ghp_..."
+
 ## Configure install software and env
 
 * install `IntelliJ IDEA` plugins
