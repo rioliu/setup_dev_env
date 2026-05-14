@@ -39,10 +39,9 @@ Project contains the scripts/resources can be used to setup dev environment
 
       ./setup_dev_env/macOS/claude_code/install.sh
       
-  Copy config files to home directory:
+  Copy config file to home directory:
       
       cp macOS/claude_code/settings.json ~/.claude/settings.json
-      cp macOS/claude_code/mcp.json ~/.claude/mcp.json
       
   Default backend is DeepSeek V4. To switch to GLM:
       
