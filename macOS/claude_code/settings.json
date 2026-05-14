@@ -4,7 +4,7 @@
     "context7@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
     "github@claude-plugins-official": true,
-    "claude-hud@jarrodwatts/claude-hud": true
+    "claude-hud@claude-hud": true
   },
   "theme": "dark",
   "autoCompactEnabled": true,
