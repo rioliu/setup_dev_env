@@ -17,4 +17,3 @@ claude plugins list 2>/dev/null | grep -q "skill-creator@claude-plugins-official
 claude plugins list 2>/dev/null | grep -q "github@claude-plugins-official" && echo "github already installed" || claude plugins install github@claude-plugins-official
 
 echo "Done. Next: copy macOS/claude_code/settings.json to ~/.claude/settings.json"
-echo "       copy macOS/claude_code/mcp.json to ~/.claude/mcp.json"
