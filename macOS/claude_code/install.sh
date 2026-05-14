@@ -1,13 +1,19 @@
 #!/bin/bash
 set -e
 
+if ! command -v brew &>/dev/null; then
+  echo "Error: Homebrew not found. Install it first:"
+  echo "  /bin/bash -c \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
+  exit 1
+fi
+
 echo "Installing Claude Code..."
-brew install claude-code 2>/dev/null || echo "claude-code already installed"
+brew list --formula claude-code &>/dev/null && echo "claude-code already installed" || brew install claude-code
 
 echo "Installing plugins..."
-claude plugins install superpowers@claude-plugins-official 2>/dev/null || echo "superpowers already installed"
-claude plugins install context7@claude-plugins-official 2>/dev/null || echo "context7 already installed"
-claude plugins install skill-creator@claude-plugins-official 2>/dev/null || echo "skill-creator already installed"
+claude plugins list 2>/dev/null | grep -q "superpowers@claude-plugins-official" && echo "superpowers already installed" || claude plugins install superpowers@claude-plugins-official
+claude plugins list 2>/dev/null | grep -q "context7@claude-plugins-official" && echo "context7 already installed" || claude plugins install context7@claude-plugins-official
+claude plugins list 2>/dev/null | grep -q "skill-creator@claude-plugins-official" && echo "skill-creator already installed" || claude plugins install skill-creator@claude-plugins-official
 
 echo "Done. Next: copy macOS/claude_code/settings.json to ~/.claude/settings.json"
 echo "       copy macOS/claude_code/mcp.json to ~/.claude/mcp.json"
