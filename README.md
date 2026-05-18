@@ -39,19 +39,20 @@ Project contains the scripts/resources can be used to setup dev environment
 
       ./setup_dev_env/macOS/claude_code/install.sh
       
-  Copy config file to home directory:
+  The `macOS/claude_code/settings.json` file in this repo is for reference only.
+  Do not copy it directly to `~/.claude/settings.json` — Claude Code automatically
+  manages that file when plugins are installed or configured interactively.
       
-      cp macOS/claude_code/settings.json ~/.claude/settings.json
+  Recommended setup steps:
+  
+  1. Run the install script above to install plugins (github, context7, etc.)
+  2. Review the `permissions` block in `macOS/claude_code/settings.json` and copy
+     relevant entries to your local Claude Code config (`/config` → permissions,
+     or directly edit `~/.claude/settings.json`).
+  3. Set required env vars in your shell profile (`.zprofile` for zsh, `.bash_profile` for bash):
       
-  Default backend is DeepSeek V4. To switch to GLM:
-      
-      claude --settings ~/.claude/settings.json --settings macOS/claude_code/profiles/glm.json
-      
-  Required shell env vars (add to ~/.zprofile):
-      
-      export DEEPSEEK_API_KEY="sk-..."
-      export ZHIPU_API_KEY="..."
-      export GITHUB_PERSONAL_ACCESS_TOKEN="ghp_..."
+      export GITHUB_PERSONAL_ACCESS_TOKEN="your-github-token"
+      export ANTHROPIC_AUTH_TOKEN="your-anthropic-api-key"
 
 ## Configure install software and env
 
