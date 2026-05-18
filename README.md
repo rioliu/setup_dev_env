@@ -1,11 +1,11 @@
 # Setup Development Environment
-Project contains the scripts/resources can be used to setup dev environment
+Scripts and resources that can be used to set up a dev environment
 
-## install required softwares
+## Install required software
 
 * install `java 8`
 
-      http://download.oracle.com/otn/java/jdk/8u192-b12/750e1c8617c5452694857ad95c3ee230/jdk-8u192-macosx-x64.dmg
+      Download from https://adoptium.net/ (Eclipse Temurin) or https://www.azul.com/downloads/ (Azul Zulu)
 
 * install `homebrew`
 
@@ -15,13 +15,17 @@ Project contains the scripts/resources can be used to setup dev environment
 
       ./setup_dev_env/macOS/install_required_app_by_brew.sh
       
+* install IDE `VS Code` (preferred)
+
+      https://code.visualstudio.com/
+
 * install java IDE `IntelliJ IDEA`
 
-      https://www.jetbrains.com/idea/download/download-thanks.html?platform=mac&code=IIC
+      https://www.jetbrains.com/idea/download/
 
-* install text editor `Sublime Text 3`
-    
-      https://download.sublimetext.com/Sublime%20Text%20Build%203176.dmg
+* install text editor `Sublime Text`
+
+      https://www.sublimetext.com/
 
 * install git GUI application `SourceTree`
 
@@ -54,11 +58,11 @@ Project contains the scripts/resources can be used to setup dev environment
       export GITHUB_PERSONAL_ACCESS_TOKEN="your-github-token"
       export ANTHROPIC_AUTH_TOKEN="your-anthropic-api-key"
 
-## Configure install software and env
+## Configure installed software and environment
 
 * install `IntelliJ IDEA` plugins
 
-  - `Lombok PLugin`
+  - `Lombok Plugin`
   - `BashSupport`
   - `Handlebars/Mustache`
   - `Kubernetes`
@@ -68,35 +72,29 @@ Project contains the scripts/resources can be used to setup dev environment
       ./setup_dev_env/macOS/intellij_idea/GoogleStyle.xml
       ./setup_dev_env/macOS/intellij_idea/FileHeader.txt
 
-* configure `Sublime Text 3` 
+* configure `Sublime Text`
 
-  - install `Package Control`
-      
-    The console is accessed via the ctrl+` shortcut or the View > Show Console menu.
-    
-        import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)
-        
-     If you cannot access packagecontrol.io， you can use this project instead > https://github.com/HBLong/channel_v3_daily
+  - `Package Control` is built-in on Sublime Text 4 (use Command Palette → Install Package)
+
+  - install plugins
    
-   - install plugins
-   
-   ```PrettyJson
-    PrettyYAML
-    Highlighter
-    Indent XML
-    Brackets Color Scheme
-    Flatland Theme
-    SideBarEnhancements
-    Javatar
-    SublimeLinter
-    Terminal
-    FileDiffs
-    Alignment
-    BracketHighlighter
-    Dockerfile Syntax Highlighting
-    YAML Nav
-    Kubernetes Manifest autocomplete
-    sublime-kubernetes-snippets (https://github.com/songjiz/sublime-kubernetes-snippets)
+    - PrettyJson
+    - PrettyYAML
+    - Highlighter
+    - Indent XML
+    - Brackets Color Scheme
+    - Flatland Theme
+    - SideBarEnhancements
+    - Javatar
+    - SublimeLinter
+    - Terminal
+    - FileDiffs
+    - Alignment
+    - BracketHighlighter
+    - Dockerfile Syntax Highlighting
+    - YAML Nav
+    - Kubernetes Manifest autocomplete
+    - sublime-kubernetes-snippets (https://github.com/songjiz/sublime-kubernetes-snippets)
  
  * install `iTerm2` color themes
    
@@ -107,19 +105,21 @@ Project contains the scripts/resources can be used to setup dev environment
           git clone https://github.com/amix/vimrc.git ~/.vim_runtime
           sh ~/.vim_runtime/install_awesome_vimrc.sh
  
- * configure ~/.bash_profile
- 
+ * configure shell profile (`.bash_profile` for bash, `.zprofile`/`.zshrc` for zsh)
+
+  Note: Homebrew paths differ by architecture — `/opt/homebrew` on Apple Silicon, `/usr/local` on Intel.
+
           export PS1="[\[\e[32m\]\u\[\e[m\]@\[\e[36m\]\h\[\e[m\]:\W]$ "
           export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
           export CLICOLOR=1
           export LSCOLORS=ExFxCxDxBxegedabagacad
           alias ll="ls -l"
           
-          [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+          [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
 
 
          # generate kubectl bash-completion file
-         if [[ (! -e $(brew --prefix bash-completion)/etc/bash_completion.d/kubectl) && (-f /usr/local/bin/kubectl) ]]; then
+         if [[ (! -e $(brew --prefix bash-completion)/etc/bash_completion.d/kubectl) && (-f $(brew --prefix)/bin/kubectl) ]]; then
             kubectl completion bash > $(brew --prefix bash-completion)/etc/bash_completion.d/kubectl
          fi
 
