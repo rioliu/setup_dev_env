@@ -31,7 +31,20 @@ Scripts and resources that can be used to set up a dev environment
 
       https://www.sourcetreeapp.com/
       
-* install terminal replacement app `iTerm2`
+* install terminal app `Ghostty` (replaces iTerm2)
+
+      brew install --cask ghostty
+      
+  Copy config:
+  
+      mkdir -p ~/Library/Application\ Support/com.mitchellh.ghostty
+      cp setup_dev_env/macOS/ghostty/config ~/Library/Application\ Support/com.mitchellh.ghostty/
+      
+  Two Monaco-like Nerd Fonts for Starship support:
+  
+      brew install font-droid-sans-mono-nerd-font font-hack-nerd-font
+
+* (legacy) install terminal replacement app `iTerm2`
 
       https://www.iterm2.com/
 

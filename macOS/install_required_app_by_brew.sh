@@ -14,5 +14,8 @@ brew install nmap
 brew install sshpass
 brew install python3
 brew install groovy
+brew install --cask ghostty
+brew install font-droid-sans-mono-nerd-font
+brew install font-hack-nerd-font
 
 
