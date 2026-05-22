@@ -1,6 +1,7 @@
 # Font (pick one)
-font-family = Hack Nerd Font Mono
+font-family = JetBrainsMono Nerd Font Mono
 # font-family = DroidSansM Nerd Font Mono
+# font-family = Hack Nerd Font Mono
 # font-family = CaskaydiaMono Nerd Font Mono
 font-size = 13
 font-feature = calt
