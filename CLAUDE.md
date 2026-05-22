@@ -9,11 +9,11 @@ This is a personal macOS development environment setup repository. It contains i
 ## Repo structure
 
 - `README.md` — canonical step-by-step setup guide; covers all manual installs, configuration, and useful applications
+- `setup.sh` — master entrypoint script that runs all automated install steps in order
 - `macOS/install_homebrew.sh` — one-liner script to install Homebrew
-- `macOS/install_required_app_by_brew.sh` — installs CLI tools and dev dependencies via Homebrew (git, jq, kubernetes-cli, maven, python3, etc.)
-- `macOS/intellij_idea/` — Google code style XML and file header template for IntelliJ IDEA
+- `macOS/install_required_app_by_brew.sh` — installs CLI tools and dev dependencies via Homebrew (git, jq, kubernetes-cli, python3, etc.)
 - `macOS/iterm2/profile.json` — iTerm2 profile export with color scheme, font, and keyboard bindings
-- `macOS/claude_code/` — Claude Code setup: install script, settings.json (DeepSeek default + permissions), GLM profile for backend switching
+- `macOS/claude_code/` — Claude Code setup: install script, settings.json, hud-config.json
 
 ## When adding to this repo
 

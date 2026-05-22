@@ -13,10 +13,6 @@ Run the master setup script to install Homebrew, CLI tools, fonts, and Claude Co
 
       https://code.visualstudio.com/
 
-* install java IDE `IntelliJ IDEA`
-
-      https://www.jetbrains.com/idea/download/
-
 * install text editor `Sublime Text`
 
       https://www.sublimetext.com/
@@ -36,9 +32,9 @@ Run the master setup script to install Homebrew, CLI tools, fonts, and Claude Co
 
       https://www.iterm2.com/
 
-* install `docker` desktop app
+* install `Podman Desktop` (container management, replaces Docker Desktop)
 
-      https://hub.docker.com/editions/community/docker-ce-desktop-mac
+      brew install --cask podman-desktop
       
 * install and configure `Claude Code`
 
@@ -55,18 +51,6 @@ Run the master setup script to install Homebrew, CLI tools, fonts, and Claude Co
 
 ## Configure installed software and environment
 
-* install `IntelliJ IDEA` plugins
-
-  - `Lombok Plugin`
-  - `BashSupport`
-  - `Handlebars/Mustache`
-  - `Kubernetes`
-
-* import `IntelliJ IDEA` code style and file template
-
-      ./setup_dev_env/macOS/intellij_idea/GoogleStyle.xml
-      ./setup_dev_env/macOS/intellij_idea/FileHeader.txt
-
 * configure `Sublime Text`
 
   - `Package Control` is built-in on Sublime Text 4 (use Command Palette → Install Package)
@@ -80,7 +64,6 @@ Run the master setup script to install Homebrew, CLI tools, fonts, and Claude Co
     - Brackets Color Scheme
     - Flatland Theme
     - SideBarEnhancements
-    - Javatar
     - SublimeLinter
     - Terminal
     - FileDiffs
