@@ -12,10 +12,6 @@ Installs Homebrew, CLI tools, fonts, Ghostty, and Claude Code with plugins.
 
 **VS Code** — https://code.visualstudio.com/
 
-**Sublime Text** — https://www.sublimetext.com/
-
-**SourceTree** (Git GUI) — https://www.sourcetreeapp.com/
-
 **Podman Desktop** (container management, replaces Docker Desktop):
 
       brew install --cask podman-desktop
@@ -58,12 +54,6 @@ Add to `~/.zshrc` (or `~/.bash_profile` for bash). Homebrew path differs by arch
 
       git clone https://github.com/amix/vimrc.git ~/.vim_runtime
       sh ~/.vim_runtime/install_awesome_vimrc.sh
-
-## Sublime Text plugins
-
-Package Control is built-in on Sublime Text 4. Install via Command Palette:
-
-PrettyJson, PrettyYAML, Highlighter, Indent XML, Brackets Color Scheme, Flatland Theme, SideBarEnhancements, SublimeLinter, Terminal, FileDiffs, Alignment, BracketHighlighter, Dockerfile Syntax Highlighting, YAML Nav, Kubernetes Manifest autocomplete, [sublime-kubernetes-snippets](https://github.com/songjiz/sublime-kubernetes-snippets)
 
 ## iTerm2 color themes
 
