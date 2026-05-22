@@ -11,6 +11,7 @@ brew install kubernetes-cli
 brew install nmap
 brew install sshpass
 brew install python3
+brew install uv
 
 # Modern CLI tools
 brew install fzf
