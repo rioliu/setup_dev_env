@@ -21,6 +21,9 @@ brew install git-delta
 brew install zoxide
 brew install bottom
 brew install tlrc
+brew install lsd
+brew install starship
+brew install lazygit
 
 brew install --cask ghostty
 brew install font-jetbrains-mono-nerd-font
