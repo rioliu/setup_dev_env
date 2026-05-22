@@ -35,12 +35,7 @@ Set env vars in your shell profile:
 
 ## Shell profile
 
-Add to `~/.zshrc` (or `~/.bash_profile` for bash). Homebrew path differs by architecture: `/opt/homebrew` (Apple Silicon) or `/usr/local` (Intel).
-
-      export PS1="[\[\e[32m\]\u\[\e[m\]@\[\e[36m\]\h\[\e[m\]:\W]$ "
-      export CLICOLOR=1
-      export LSCOLORS=ExFxCxDxBxegedabagacad
-      alias ll="ls -l"
+Add to `~/.zshrc`. Homebrew path: `/opt/homebrew` (Apple Silicon) or `/usr/local` (Intel).
 
       [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
 
