@@ -14,9 +14,21 @@ brew install nmap
 brew install sshpass
 brew install python3
 brew install groovy
+
+# Modern CLI tools
+brew install fzf
+brew install ripgrep
+brew install fd
+brew install bat
+brew install git-delta
+brew install zoxide
+brew install bottom
+brew install tlrc
+
 brew install --cask ghostty
 brew install font-jetbrains-mono-nerd-font
 brew install font-droid-sans-mono-nerd-font
 brew install font-hack-nerd-font
+brew install font-maple-mono-nf-cn
 
 
