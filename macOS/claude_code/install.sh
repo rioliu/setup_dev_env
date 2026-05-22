@@ -20,5 +20,8 @@ echo "Adding community marketplace..."
 claude plugins marketplace add jarrodwatts/claude-hud 2>/dev/null || true
 claude plugins list 2>/dev/null | grep -q "claude-hud" && echo "claude-hud already installed" || claude plugins install claude-hud
 
-echo "Done. Next: copy macOS/claude_code/settings.json to ~/.claude/settings.json"
-echo "       then restart claude and run /claude-hud:setup to enable HUD status bar"
+echo "Copying configs..."
+cp "$(dirname "$0")/settings.json" ~/.claude/settings.json
+mkdir -p ~/.claude/plugins/claude-hud
+cp "$(dirname "$0")/hud-config.json" ~/.claude/plugins/claude-hud/config.json
+echo "Done. Restart claude to apply the HUD status bar."
