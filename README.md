@@ -1,20 +1,14 @@
 # Setup Development Environment
 Scripts and resources that can be used to set up a dev environment
 
-## Install required software
+## Quick start (automated)
 
-* install `java 8`
+Run the master setup script to install Homebrew, CLI tools, fonts, and Claude Code:
 
-      Download from https://adoptium.net/ (Eclipse Temurin) or https://www.azul.com/downloads/ (Azul Zulu)
+      ./setup.sh
 
-* install `homebrew`
+## Manual installs
 
-      ./setup_dev_env/macOS/install_homebrew.sh
-
-* install `homebrew` apps
-
-      ./setup_dev_env/macOS/install_required_app_by_brew.sh
-      
 * install IDE `VS Code` (preferred)
 
       https://code.visualstudio.com/
@@ -33,16 +27,10 @@ Scripts and resources that can be used to set up a dev environment
       
 * install terminal app `Ghostty` (replaces iTerm2)
 
-      brew install --cask ghostty
-      
   Copy config:
-  
+
       mkdir -p ~/Library/Application\ Support/com.mitchellh.ghostty
       cp setup_dev_env/macOS/ghostty/config ~/Library/Application\ Support/com.mitchellh.ghostty/
-      
-  Two Monaco-like Nerd Fonts for Starship support:
-  
-      brew install font-droid-sans-mono-nerd-font font-hack-nerd-font
 
 * (legacy) install terminal replacement app `iTerm2`
 
@@ -56,18 +44,12 @@ Scripts and resources that can be used to set up a dev environment
 
       ./setup_dev_env/macOS/claude_code/install.sh
       
-  The `macOS/claude_code/settings.json` file in this repo is for reference only.
-  Do not copy it directly to `~/.claude/settings.json` — Claude Code automatically
-  manages that file when plugins are installed or configured interactively.
-      
-  Recommended setup steps:
-  
-  1. Run the install script above to install plugins (github, context7, etc.)
-  2. Review the `permissions` block in `macOS/claude_code/settings.json` and copy
-     relevant entries to your local Claude Code config (`/config` → permissions,
-     or directly edit `~/.claude/settings.json`).
-  3. Set required env vars in your shell profile (`.zprofile` for zsh, `.bash_profile` for bash):
-      
+  The install script copies `settings.json` and `hud-config.json` automatically.
+  If you need to customize permissions, edit `~/.claude/settings.json` directly
+  or use `/config` within Claude Code.
+
+  Set required env vars in your shell profile (`.zprofile` for zsh, `.bash_profile` for bash):
+
       export GITHUB_PERSONAL_ACCESS_TOKEN="your-github-token"
       export ANTHROPIC_AUTH_TOKEN="your-anthropic-api-key"
 
@@ -123,7 +105,6 @@ Scripts and resources that can be used to set up a dev environment
   Note: Homebrew paths differ by architecture — `/opt/homebrew` on Apple Silicon, `/usr/local` on Intel.
 
           export PS1="[\[\e[32m\]\u\[\e[m\]@\[\e[36m\]\h\[\e[m\]:\W]$ "
-          export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
           export CLICOLOR=1
           export LSCOLORS=ExFxCxDxBxegedabagacad
           alias ll="ls -l"
