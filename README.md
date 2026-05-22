@@ -45,6 +45,13 @@ Add to `~/.zshrc`. Homebrew path: `/opt/homebrew` (Apple Silicon) or `/usr/local
       fi
       [[ -f $(brew --prefix bash-completion)/etc/bash_completion.d/kubectl ]] && . $(brew --prefix bash-completion)/etc/bash_completion.d/kubectl
 
+## Starship
+
+Installed by `setup.sh`. Copy config:
+
+    mkdir -p ~/.config
+    cp macOS/starship/starship.toml ~/.config/starship.toml
+
 ## vim
 
       git clone https://github.com/amix/vimrc.git ~/.vim_runtime
