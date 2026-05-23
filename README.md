@@ -33,13 +33,12 @@ Installs Homebrew, CLI tools, fonts, Ghostty, Starship, Claude Code with plugins
 | Kubernetes | kubectl |
 | Fonts | JetBrainsMono, DroidSansMono, Hack, Maple Mono — all Nerd Font variants |
 | Claude Code | CLI + 5 plugins (github, context7, claude-hud, karpathy-skills, skill-creator) |
-| VS Code | 16 Go/Python extensions, additively merged settings |
+| VS Code | Installed via brew cask, 16 Go/Python extensions, additively merged settings |
 
 ### Manual
 
 | Tool | Purpose |
 |---|---|
-| VS Code | Primary editor — https://code.visualstudio.com/ |
 | Podman Desktop | Container management (Docker alternative) — `brew install --cask podman-desktop` |
 | vim | `git clone https://github.com/amix/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh` |
 
@@ -81,11 +80,7 @@ Extensions and settings are applied to the **default profile** via `macOS/vscode
 - **Extensions** are installed via `code --install-extension`, skipping already-installed ones
 - **Settings** are additively merged — only keys from the repo's `settings.json` that don't already exist are added. Existing settings are never overwritten
 
-If VS Code isn't installed when `setup.sh` runs, the step is skipped with a warning. Re-run it after installing VS Code:
-
-```sh
-bash macOS/vscode/install_extensions.sh
-```
+VS Code is installed via `brew install --cask visual-studio-code` if not already present.
 
 ### Go
 

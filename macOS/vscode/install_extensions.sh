@@ -5,8 +5,12 @@
 set -euo pipefail
 
 if ! command -v code &> /dev/null; then
-    echo "Warning: 'code' CLI not found. Install VS Code first, then re-run this script." >&2
-    exit 0
+    echo ">>> Installing VS Code..."
+    if ! command -v brew &> /dev/null; then
+        echo "Error: Homebrew not found. Install it first." >&2
+        exit 1
+    fi
+    brew install --cask visual-studio-code
 fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
