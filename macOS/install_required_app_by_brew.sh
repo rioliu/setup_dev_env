@@ -26,6 +26,9 @@ brew install lsd
 brew install starship
 brew install lazygit
 
+# Go tools
+brew install golangci-lint
+
 brew install --cask ghostty
 brew install font-jetbrains-mono-nerd-font
 brew install font-droid-sans-mono-nerd-font

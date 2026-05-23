@@ -12,7 +12,7 @@
             "source.organizeImports": "explicit"
         }
     },
-    "go.lintTool": "staticcheck",
+    "go.lintTool": "golangci-lint",
     "go.toolsManagement.autoUpdate": true,
     "go.survey.prompt": false,
 

@@ -28,7 +28,7 @@ Installs Homebrew, CLI tools, fonts, Ghostty, Starship, Claude Code with plugins
 | Shell | bash-completion, starship (prompt) |
 | Terminal | Ghostty (GPU-accelerated) |
 | Core CLI | git, curl, wget, jq, tree, coreutils, nmap, sshpass |
-| Modern CLI | ripgrep, fd, bat, lsd, fzf, zoxide, bottom, tlrc, git-delta, lazygit |
+| Modern CLI | ripgrep, fd, bat, lsd, fzf, zoxide, bottom, tlrc, git-delta, lazygit, golangci-lint |
 | Languages & tooling | python3, go, uv (Python package manager) |
 | Kubernetes | kubectl |
 | Fonts | JetBrainsMono, DroidSansMono, Hack, Maple Mono — all Nerd Font variants |
@@ -89,11 +89,11 @@ VS Code is installed via `brew install --cask visual-studio-code` if not already
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": { "source.organizeImports": "explicit" }
 },
-"go.lintTool": "staticcheck",
+"go.lintTool": "golangci-lint",
 "go.toolsManagement.autoUpdate": true
 ```
 
-First time opening a `.go` file, the Go extension will prompt to install `gopls`, `dlv`, and `staticcheck`. Accept it.
+First time opening a `.go` file, the Go extension will prompt to install `gopls`, `dlv`, and `golangci-lint`. Accept it.
 
 ### Python
 
