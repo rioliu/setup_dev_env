@@ -121,7 +121,7 @@ mkdir -p ~/Library/Application\ Support/com.mitchellh.ghostty
 cp macOS/ghostty/config ~/Library/Application\ Support/com.mitchellh.ghostty/
 ```
 
-Key settings: JetBrainsMono Nerd Font at 13px, dark theme with 80% opacity, 130×50 window, 10k-line scrollback. iTerm2 profile is kept as a legacy fallback at `macOS/iterm2/profile.json`.
+Key settings: Maple Mono NF CN at 13px, dark theme with 80% opacity, 130×50 window, 10k-line scrollback. iTerm2 profile is kept as a legacy fallback at `macOS/iterm2/profile.json`.
 
 ## Shell prompt (Starship)
 
