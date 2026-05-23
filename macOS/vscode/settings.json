@@ -1,0 +1,29 @@
+{
+    "editor.minimap.enabled": false,
+    "workbench.colorTheme": "Darcula",
+    "workbench.editor.enablePreview": false,
+    "editor.fontFamily": "Maple Mono NF CN,JetBrainsMono Nerd Font Mono, Menlo, Monaco, 'Courier New', monospace ",
+    "editor.fontSize": 13,
+
+    // ── Go ──────────────────────────────────────────
+    "[go]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        }
+    },
+    "go.lintTool": "staticcheck",
+    "go.toolsManagement.autoUpdate": true,
+    "go.survey.prompt": false,
+
+    // ── Python ──────────────────────────────────────
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    "python.languageServer": "Pylance",
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.autoImportCompletions": true,
+    "python.testing.pytestEnabled": true,
+    "python.testing.unittestEnabled": false
+}
