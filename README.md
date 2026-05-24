@@ -28,11 +28,11 @@ Installs Homebrew, CLI tools, fonts, Ghostty, Starship, Claude Code with plugins
 | Shell | bash-completion, starship (prompt) |
 | Terminal | Ghostty (GPU-accelerated) |
 | Core CLI | git, curl, wget, jq, tree, coreutils, nmap, sshpass |
-| Modern CLI | ripgrep, fd, bat, lsd, fzf, zoxide, bottom, tlrc, git-delta, lazygit, golangci-lint |
+| Modern CLI | ripgrep, fd, bat, lsd, fzf, zoxide, bottom, tlrc, git-delta, lazygit, gh, golangci-lint |
 | Languages & tooling | python3, go, uv (Python package manager) |
 | Kubernetes | kubectl |
 | Fonts | JetBrainsMono, DroidSansMono, Hack, Maple Mono — all Nerd Font variants |
-| Claude Code | CLI + 5 plugins (github, context7, claude-hud, karpathy-skills, skill-creator) |
+| Claude Code | CLI + 4 plugins (context7, claude-hud, karpathy-skills, skill-creator) |
 | VS Code | Installed via brew cask, 16 Go/Python extensions, additively merged settings |
 
 ### Manual
@@ -50,11 +50,12 @@ Claude Code is the centerpiece. It reads/writes files, runs shell commands, sear
 
 | Plugin | What it does |
 |---|---|
-| `github` | PR management, issue tracking, code search across GitHub |
 | `context7` | Real-time library documentation (replaces stale training data) |
 | `claude-hud` | Status bar with tools, agents, todos, and timers |
 | `karpathy-skills` | Behavioral guardrails to reduce common LLM coding mistakes |
 | `skill-creator` | Build and iterate on custom skills |
+
+GitHub interactions (PRs, issues, search) are handled via the `gh` CLI instead of a plugin — faster, no MCP tool overhead in context.
 
 ### Permissions
 

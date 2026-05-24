@@ -25,6 +25,7 @@ brew install tlrc
 brew install lsd
 brew install starship
 brew install lazygit
+brew install gh
 
 # Go tools
 brew install golangci-lint

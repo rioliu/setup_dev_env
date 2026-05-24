@@ -46,8 +46,7 @@
     "context7@claude-plugins-official": true,
     "claude-hud@claude-hud": true,
     "andrej-karpathy-skills@karpathy-skills": true,
-    "skill-creator@claude-plugins-official": true,
-    "github@claude-plugins-official": true
+    "skill-creator@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "claude-hud": {

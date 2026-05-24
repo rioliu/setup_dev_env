@@ -12,7 +12,7 @@ This is a personal macOS development environment setup repository. It contains i
 - `setup.sh` — master entrypoint script that runs all automated install steps in order: Homebrew, CLI tools, Claude Code, VS Code
 - `macOS/install_homebrew.sh` — one-liner script to install Homebrew
 - `macOS/install_required_app_by_brew.sh` — installs CLI tools, fonts, and apps via Homebrew
-- `macOS/claude_code/` — Claude Code setup: install script, settings.json (pre-approved permissions, plugins, HUD statusline), hud-config.json, and `profiles/` (custom model profile templates)
+- `macOS/claude_code/` — Claude Code setup: install script, settings.json (pre-approved permissions, 4 plugins, HUD statusline), hud-config.json, and `profiles/` (custom model profile templates)
 - `macOS/vscode/` — VS Code: `extensions.txt` (16 extensions, one per line), `install_extensions.sh` (installs VS Code if missing, installs extensions idempotently, merges settings additively), `settings.json`
 - `macOS/ghostty/config` — GPU-accelerated terminal config (manual copy, not in setup.sh)
 - `macOS/starship/starship.toml` — Shell prompt config with Catppuccin Mocha palette (manual copy, not in setup.sh)
