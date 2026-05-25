@@ -8,33 +8,9 @@ font-feature = calt
 font-feature = liga
 
 # Theme
-background = #131313
-foreground = #d6dbe5
-cursor-color = #b9b9b9
-cursor-text = #101010
-selection-background = #1f1f1f
-selection-foreground = #d6dbe5
-
-palette = 0=#1f1f1f
-palette = 1=#f81118
-palette = 2=#2dc55e
-palette = 3=#edba0f
-palette = 4=#2a84d2
-palette = 5=#4f5ab7
-palette = 6=#0f81d6
-palette = 7=#d6dbe5
-palette = 8=#d6dbe5
-palette = 9=#df352e
-palette = 10=#1dd361
-palette = 11=#f2bd09
-palette = 12=#0f81d6
-palette = 13=#5350ba
-palette = 14=#0f7ddb
-palette = 15=#ffffff
+theme = Gruvbox Dark Hard
 
 # Window
-background-opacity = 0.8
-background-blur = 20
 window-width = 130
 window-height = 50
 macos-titlebar-style = tabs

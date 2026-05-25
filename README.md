@@ -59,7 +59,7 @@ GitHub interactions (PRs, issues, search) are handled via the `gh` CLI instead o
 
 ### Permissions
 
-`macOS/claude_code/settings.json` pre-allows safe read-only and git operations so the agent doesn't prompt for every `ls` or `grep`. Destructive operations still require approval.
+`macOS/claude_code/settings.json` configures `permissions.defaultMode: "auto"`, which skips all permission prompts. The `permissions.allow` list is a **fallback** — if you switch back to `"default"` mode (via `/config`), pre-approved safe operations (read-only, git) won't prompt. Destructive operations still require approval in default mode.
 
 ### Custom model profiles
 
