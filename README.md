@@ -32,7 +32,16 @@ cd setup_dev_env
 
 ### 2. Shell profile
 
-Add to `~/.zshrc`:
+Add to `~/.zprofile` (API keys — loaded once at login):
+
+```sh
+export ANTHROPIC_AUTH_TOKEN="your-anthropic-key"
+export GITHUB_PERSONAL_ACCESS_TOKEN="your-github-token"
+# If using the GLM profile:
+export ZHIPU_API_KEY="your-zhipu-key"
+```
+
+Add to `~/.zshrc` (CLI tool init — loaded every shell):
 
 ```sh
 # Starship prompt
@@ -43,12 +52,6 @@ eval "$(zoxide init zsh)"
 
 # fzf keybindings
 eval "$(fzf --zsh)"
-
-# API keys
-export ANTHROPIC_AUTH_TOKEN="your-anthropic-key"
-export GITHUB_PERSONAL_ACCESS_TOKEN="your-github-token"
-# If using the GLM profile:
-export ZHIPU_API_KEY="your-zhipu-key"
 
 # Homebrew bash completion
 [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
