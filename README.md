@@ -134,22 +134,36 @@ GitHub interactions (PRs, issues, search) are handled via the `gh` CLI instead o
 
 `macOS/claude_code/settings.json` configures `permissions.defaultMode: "auto"`, which skips all permission prompts. The `permissions.allow` list is a **fallback** — if you switch back to `"default"` mode (via `/config`), pre-approved safe operations (read-only, git) won't prompt. Destructive operations still require approval in default mode.
 
-### Custom model profiles
+### Custom model providers
 
-Default routes through Anthropic. `setup.sh` (step 5) deploys any profiles in `macOS/claude_code/profiles/` to `~/.claude/profiles/` (existing profiles are not overwritten).
+Default routes through Anthropic. To switch to a different provider, edit `~/.claude/settings.json` and add an `env` block.
 
-To use a profile, pass it via `--settings`:
+`setup.sh` (step 5) deploys reference templates from `macOS/claude_code/profiles/` to `~/.claude/profiles/` so you can copy the `env` block from. Existing files are never overwritten.
 
-```sh
-claude --settings ~/.claude/profiles/glm.json
-```
+**To switch from Anthropic to GLM:**
 
-The included `glm.json` routes Claude Code through Zhipu's Anthropic-compatible API:
+1. Open the template: `cat ~/.claude/profiles/glm.json`
+2. Copy its `env` block into your `~/.claude/settings.json`:
+   ```json
+   {
+     "permissions": { "...": "..." },
+     "env": {
+       "ANTHROPIC_BASE_URL": "https://open.bigmodel.cn/api/anthropic",
+       "ANTHROPIC_AUTH_TOKEN": "${ZHIPU_API_KEY}",
+       "ANTHROPIC_MODEL": "opus",
+       "ANTHROPIC_DEFAULT_OPUS_MODEL": "glm-5.1",
+       "ANTHROPIC_DEFAULT_SONNET_MODEL": "glm-5-turbo",
+       "ANTHROPIC_DEFAULT_HAIKU_MODEL": "glm-4.5-air",
+       "CLAUDE_CODE_SUBAGENT_MODEL": "glm-4.5-air",
+       "API_TIMEOUT_MS": "3000000",
+       "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": 1
+     }
+   }
+   ```
+3. Make sure `ZHIPU_API_KEY` is exported in your `~/.zprofile`
+4. Restart Claude Code
 
-- Pins startup model to `opus` alias (resolves to `glm-5.1`)
-- Sonnet alias → `glm-5-turbo`, Haiku alias → `glm-4.5-air`
-- Subagents use `glm-4.5-air`
-- Requires `ZHIPU_API_KEY` in your shell environment
+**To switch back to Anthropic:** delete the `env` block (or just `ANTHROPIC_BASE_URL` and `ANTHROPIC_AUTH_TOKEN`) from `~/.claude/settings.json`. Claude Code will fall back to OAuth or `ANTHROPIC_API_KEY`.
 
 For details on which env vars control what, see [Claude Code → Model configuration](https://code.claude.com/docs/en/model-config).
 
