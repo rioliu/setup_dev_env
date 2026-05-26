@@ -2,34 +2,104 @@
 
 An opinionated macOS dev environment that puts an AI coding agent (Claude Code) alongside a modern CLI toolchain, language runtimes, and editor config — so you can ship with either keystrokes or natural language.
 
-## Philosophy
+## Step-by-step setup
 
-Three layers, each building on the last:
-
-1. **Foundation** — package manager, shell, terminal. The boring stuff that must work.
-2. **Toolchain** — CLI tools picked for speed and composability. The agent uses these under the hood (ripgrep for search, fd for file discovery, jq for JSON, git for version control). Fast tools mean fast agent loops.
-3. **Agent & Editor** — Claude Code with plugins for the AI side; VS Code with Go/Python language servers for manual editing. Same project, two interfaces.
-
-## Quick start
+### Prerequisites
 
 ```sh
+xcode-select --install
+```
+
+Accept the license dialog. This installs the C compiler and Git that Homebrew needs.
+
+### 1. Clone and run
+
+```sh
+git clone git@github.com:rioliu/setup_dev_env.git
+cd setup_dev_env
 ./setup.sh
 ```
 
-Installs Homebrew, CLI tools, fonts, Ghostty, Starship, Claude Code with plugins, and VS Code config.
+`setup.sh` runs five steps, each idempotent (safe to re-run):
+
+| Step | What it does |
+|---|---|
+| 1 — Homebrew | Installs the package manager (skips if present) |
+| 2 — CLI tools & apps | Installs git, ripgrep, fd, bat, jq, fzf, zoxide, starship, gh, ghostty, fonts, etc. |
+| 3 — Claude Code | Installs CLI + 4 plugins, merges settings into `~/.claude/settings.json` |
+| 4 — VS Code | Installs VS Code + 16 extensions, additively merges settings |
+| 5 — Configs | Deploys Ghostty, Starship, and Claude profile configs |
+
+### 2. Shell profile
+
+Add to `~/.zshrc`:
+
+```sh
+# Starship prompt
+eval "$(starship init zsh)"
+
+# zoxide (smart cd)
+eval "$(zoxide init zsh)"
+
+# fzf keybindings
+eval "$(fzf --zsh)"
+
+# API keys
+export ANTHROPIC_AUTH_TOKEN="your-anthropic-key"
+export GITHUB_PERSONAL_ACCESS_TOKEN="your-github-token"
+# If using the GLM profile:
+export ZHIPU_API_KEY="your-zhipu-key"
+
+# Homebrew bash completion
+[[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+
+# kubectl completion
+if [[ ! -e $(brew --prefix bash-completion)/etc/bash_completion.d/kubectl ]] && [[ -f $(brew --prefix)/bin/kubectl ]]; then
+  kubectl completion bash > $(brew --prefix bash-completion)/etc/bash_completion.d/kubectl
+fi
+[[ -f $(brew --prefix bash-completion)/etc/bash_completion.d/kubectl ]] && . $(brew --prefix bash-completion)/etc/bash_completion.d/kubectl
+```
+
+Then reload:
+
+```sh
+source ~/.zshrc
+```
+
+### 3. Optional tools
+
+```sh
+# Container management (Docker alternative)
+brew install --cask podman-desktop
+
+# Vim config
+git clone https://github.com/amix/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
+```
+
+### 4. Verify
+
+| Check | Command | Expected |
+|---|---|---|
+| Homebrew | `brew --version` | version string |
+| CLI tools | `rg --version && fd --version && bat --version` | three version strings |
+| Starship | open a new shell tab | Catppuccin Mocha prompt with git info |
+| Ghostty | open Ghostty app | Gruvbox Dark Hard theme, Maple Mono font |
+| Claude Code | `claude --version && claude plugins list` | shows context7, claude-hud, karpathy-skills, skill-creator |
+| VS Code | `code --list-extensions \| wc -l` | >= 16 |
+| Claude profile | `ls ~/.claude/profiles/` | `glm.json` |
 
 ## What gets installed
 
-### Via setup.sh (automated)
+### Automated (via setup.sh)
 
 | Layer | Tools |
 |---|---|
 | Package manager | Homebrew |
 | Shell | bash-completion, starship (prompt) |
 | Terminal | Ghostty (GPU-accelerated) |
-| Core CLI | git, curl, wget, jq, tree, coreutils, nmap, sshpass |
-| Modern CLI | ripgrep, fd, bat, lsd, fzf, zoxide, bottom, tlrc, git-delta, lazygit, gh, golangci-lint |
-| Languages & tooling | python3, go, uv (Python package manager) |
+| Core CLI | git, curl, wget, jq, tree, coreutils, nmap |
+| Modern CLI | ripgrep, fd, bat, lsd, fzf, zoxide, bottom, tlrc, git-delta, lazygit, gh |
+| Languages & tooling | python, uv, golangci-lint |
 | Kubernetes | kubectl |
 | Fonts | JetBrainsMono, DroidSansMono, Hack, Maple Mono — all Nerd Font variants |
 | Claude Code | CLI + 4 plugins (context7, claude-hud, karpathy-skills, skill-creator) |
@@ -64,15 +134,6 @@ GitHub interactions (PRs, issues, search) are handled via the `gh` CLI instead o
 ### Custom model profiles
 
 Default routes through Anthropic. `setup.sh` (step 5) deploys any profiles in `macOS/claude_code/profiles/` to `~/.claude/profiles/` (existing profiles are not overwritten).
-
-### Environment variables
-
-Set in your shell profile:
-
-```sh
-export GITHUB_PERSONAL_ACCESS_TOKEN="your-github-token"
-export ANTHROPIC_AUTH_TOKEN="your-anthropic-api-key"
-```
 
 ## VS Code
 
@@ -112,28 +173,13 @@ First time opening a `.go` file, the Go extension will prompt to install `gopls`
 
 GPU-accelerated, config at `macOS/ghostty/config`. Deployed automatically by `setup.sh` (step 5).
 
-Key settings: Maple Mono NF CN at 13px, Gruvbox Dark Hard theme, 130×50 window, 10k-line scrollback. iTerm2 profile is kept as a legacy fallback at `macOS/iterm2/profile.json`.
+Key settings: Maple Mono NF CN at 13px, Gruvbox Dark Hard theme, 130x50 window, 10k-line scrollback. iTerm2 profile is kept as a legacy fallback at `macOS/iterm2/profile.json`.
 
 ## Shell prompt (Starship)
 
 Config at `macOS/starship/starship.toml`. Deployed automatically by `setup.sh` (step 5).
 
 Shows OS, user, path, git branch/status, active language runtimes (Go, Python, Rust, Node, Java, etc.), and command duration. Catppuccin Mocha palette.
-
-## Shell profile
-
-Add to `~/.zshrc`:
-
-```sh
-# Homebrew bash completion
-[[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
-
-# kubectl completion
-if [[ ! -e $(brew --prefix bash-completion)/etc/bash_completion.d/kubectl ]] && [[ -f $(brew --prefix)/bin/kubectl ]]; then
-  kubectl completion bash > $(brew --prefix bash-completion)/etc/bash_completion.d/kubectl
-fi
-[[ -f $(brew --prefix bash-completion)/etc/bash_completion.d/kubectl ]] && . $(brew --prefix bash-completion)/etc/bash_completion.d/kubectl
-```
 
 ## Design decisions
 
@@ -142,7 +188,7 @@ fi
 - **Ghostty over iTerm2.** Modern renderer, simpler config, native performance.
 - **Starship over hand-rolled PS1.** One config file, language-aware, consistent across shells.
 - **Nerd Fonts over plain monospace.** Icons in prompt and file tree (lsd, starship) need them.
-- **Settings merge, not overwrite.** VS Code settings are applied additively — local tweaks survive re-provisioning.
+- **Settings merge, not overwrite.** VS Code and Claude Code settings are applied additively — local tweaks survive re-provisioning.
 
 ## Useful applications
 
