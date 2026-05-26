@@ -138,6 +138,21 @@ GitHub interactions (PRs, issues, search) are handled via the `gh` CLI instead o
 
 Default routes through Anthropic. `setup.sh` (step 5) deploys any profiles in `macOS/claude_code/profiles/` to `~/.claude/profiles/` (existing profiles are not overwritten).
 
+To use a profile, pass it via `--settings`:
+
+```sh
+claude --settings ~/.claude/profiles/glm.json
+```
+
+The included `glm.json` routes Claude Code through Zhipu's Anthropic-compatible API:
+
+- Pins startup model to `opus` alias (resolves to `glm-5.1`)
+- Sonnet alias → `glm-5-turbo`, Haiku alias → `glm-4.5-air`
+- Subagents use `glm-4.5-air`
+- Requires `ZHIPU_API_KEY` in your shell environment
+
+For details on which env vars control what, see [Claude Code → Model configuration](https://code.claude.com/docs/en/model-config).
+
 ## VS Code
 
 Extensions and settings are applied to the **default profile** via `macOS/vscode/install_extensions.sh` (called automatically by `setup.sh`):
