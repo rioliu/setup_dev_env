@@ -1,39 +1,23 @@
-#!/bin/sh
+#!/bin/bash
+set -e
 
-brew install bash-completion
-brew install coreutils
-brew install wget
-brew install curl
-brew install tree
-brew install jq
-brew install git
-brew install kubernetes-cli
-brew install nmap
-brew install sshpass
-brew install python3
-brew install uv
+# Core CLI
+for pkg in bash-completion coreutils wget curl tree jq git kubernetes-cli nmap python uv; do
+  brew list --formula "$pkg" &>/dev/null && echo "$pkg already installed" || brew install "$pkg"
+done
 
 # Modern CLI tools
-brew install fzf
-brew install ripgrep
-brew install fd
-brew install bat
-brew install git-delta
-brew install zoxide
-brew install bottom
-brew install tlrc
-brew install lsd
-brew install starship
-brew install lazygit
-brew install gh
+for pkg in fzf ripgrep fd bat git-delta zoxide bottom tlrc lsd starship lazygit gh; do
+  brew list --formula "$pkg" &>/dev/null && echo "$pkg already installed" || brew install "$pkg"
+done
 
 # Go tools
-brew install golangci-lint
+brew list --formula golangci-lint &>/dev/null && echo "golangci-lint already installed" || brew install golangci-lint
 
-brew install --cask ghostty
-brew install font-jetbrains-mono-nerd-font
-brew install font-droid-sans-mono-nerd-font
-brew install font-hack-nerd-font
-brew install font-maple-mono-nf-cn
+# Apps
+brew list --cask ghostty &>/dev/null && echo "ghostty already installed" || brew install --cask ghostty
 
-
+# Fonts
+for font in font-jetbrains-mono-nerd-font font-droid-sans-mono-nerd-font font-hack-nerd-font font-maple-mono-nf-cn; do
+  brew list --cask "$font" &>/dev/null && echo "$font already installed" || brew install "$font"
+done

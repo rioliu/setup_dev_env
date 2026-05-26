@@ -63,7 +63,7 @@ GitHub interactions (PRs, issues, search) are handled via the `gh` CLI instead o
 
 ### Custom model profiles
 
-Default routes through Anthropic. Copy `macOS/claude_code/profiles/glm.json` to `~/.claude/profiles/` if you use a third-party endpoint, or create your own.
+Default routes through Anthropic. `setup.sh` (step 5) deploys any profiles in `macOS/claude_code/profiles/` to `~/.claude/profiles/` (existing profiles are not overwritten).
 
 ### Environment variables
 
@@ -110,23 +110,13 @@ First time opening a `.go` file, the Go extension will prompt to install `gopls`
 
 ## Terminal (Ghostty)
 
-GPU-accelerated, config at `macOS/ghostty/config`. Copy it into place:
+GPU-accelerated, config at `macOS/ghostty/config`. Deployed automatically by `setup.sh` (step 5).
 
-```sh
-mkdir -p ~/Library/Application\ Support/com.mitchellh.ghostty
-cp macOS/ghostty/config ~/Library/Application\ Support/com.mitchellh.ghostty/
-```
-
-Key settings: Maple Mono NF CN at 13px, dark theme with 80% opacity, 130×50 window, 10k-line scrollback. iTerm2 profile is kept as a legacy fallback at `macOS/iterm2/profile.json`.
+Key settings: Maple Mono NF CN at 13px, Gruvbox Dark Hard theme, 130×50 window, 10k-line scrollback. iTerm2 profile is kept as a legacy fallback at `macOS/iterm2/profile.json`.
 
 ## Shell prompt (Starship)
 
-Config at `macOS/starship/starship.toml`. Copy it into place:
-
-```sh
-mkdir -p ~/.config
-cp macOS/starship/starship.toml ~/.config/starship.toml
-```
+Config at `macOS/starship/starship.toml`. Deployed automatically by `setup.sh` (step 5).
 
 Shows OS, user, path, git branch/status, active language runtimes (Go, Python, Rust, Node, Java, etc.), and command duration. Catppuccin Mocha palette.
 

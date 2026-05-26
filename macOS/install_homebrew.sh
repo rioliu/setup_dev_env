@@ -1,3 +1,10 @@
 #!/bin/bash
+set -e
 
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+if command -v brew &>/dev/null; then
+  echo "Homebrew already installed ($(brew --version | head -1))"
+  exit 0
+fi
+
+echo "Installing Homebrew..."
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
