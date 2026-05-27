@@ -5,7 +5,7 @@ font-feature = calt
 font-feature = liga
 
 # Theme
-theme = Everforest Dark Hard
+theme = Gruvbox Material Dark
 
 # Window
 window-width = 130
