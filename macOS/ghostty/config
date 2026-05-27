@@ -1,23 +1,35 @@
-# Font (pick one)
+# Font
 font-family = Maple Mono NF CN
-# font-family = JetBrainsMono Nerd Font Mono
-# font-family = DroidSansM Nerd Font Mono
-# font-family = Hack Nerd Font Mono
 font-size = 13
 font-feature = calt
 font-feature = liga
 
 # Theme
-theme = Gruvbox Dark Hard
+theme = Everforest Dark Hard
 
 # Window
 window-width = 130
 window-height = 50
+window-padding-x = 8
+window-padding-y = 4
 macos-titlebar-style = tabs
+macos-window-shadow = true
 
+# Transparency (frosted glass)
+background-opacity = 0.93
+background-blur-radius = 24
+
+# Cursor
+cursor-style = bar
+cursor-style-blink = true
+
+# Behavior
 scrollback-limit = 10000
-cursor-style = block
+copy-on-select = clipboard
 macos-option-as-alt = false
 mouse-hide-while-typing = true
-copy-on-select = clipboard
-cursor-style-blink = false
+confirm-close-surface = false
+window-inherit-working-directory = true
+window-new-tab-position = current
+resize-overlay = never
+bold-is-bright = true
