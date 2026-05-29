@@ -128,7 +128,7 @@ Claude Code is the centerpiece. It reads/writes files, runs shell commands, sear
 | `karpathy-skills` | Behavioral guardrails to reduce common LLM coding mistakes |
 | `skill-creator` | Build and iterate on custom skills |
 
-GitHub interactions (PRs, issues, search) are handled via the `gh` CLI instead of a plugin — faster, no MCP tool overhead in context.
+GitHub interactions (PRs, issues, search) default to the `gh` CLI — faster, lower token overhead. The GitHub MCP plugin is a fallback for operations that `gh` doesn't support yet.
 
 ### Permissions
 
