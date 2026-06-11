@@ -11,8 +11,6 @@ echo "Installing Claude Code..."
 brew list --formula claude-code &>/dev/null && echo "claude-code already installed" || brew install claude-code
 
 echo "Installing plugins..."
-claude plugins marketplace add forrestchang/andrej-karpathy-skills 2>/dev/null || true
-claude plugins list 2>/dev/null | grep -q "andrej-karpathy-skills" && echo "andrej-karpathy-skills already installed" || claude plugins install andrej-karpathy-skills@karpathy-skills
 claude plugins list 2>/dev/null | grep -q "context7@claude-plugins-official" && echo "context7 already installed" || claude plugins install context7@claude-plugins-official
 claude plugins list 2>/dev/null | grep -q "skill-creator@claude-plugins-official" && echo "skill-creator already installed" || claude plugins install skill-creator@claude-plugins-official
 echo "Adding community marketplace..."
