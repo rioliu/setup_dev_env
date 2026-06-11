@@ -47,7 +47,6 @@
   "enabledPlugins": {
     "context7@claude-plugins-official": true,
     "claude-hud@claude-hud": true,
-    "andrej-karpathy-skills@karpathy-skills": true,
     "skill-creator@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
@@ -55,12 +54,6 @@
       "source": {
         "source": "github",
         "repo": "jarrodwatts/claude-hud"
-      }
-    },
-    "karpathy-skills": {
-      "source": {
-        "source": "github",
-        "repo": "forrestchang/andrej-karpathy-skills"
       }
     }
   },

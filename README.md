@@ -87,7 +87,7 @@ git clone https://github.com/amix/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/
 | CLI tools | `rg --version && fd --version && bat --version` | three version strings |
 | Starship | open a new shell tab | Catppuccin Mocha prompt with git info |
 | Ghostty | open Ghostty app | Gruvbox Dark Hard theme, Maple Mono font |
-| Claude Code | `claude --version && claude plugins list` | shows context7, claude-hud, karpathy-skills, skill-creator |
+| Claude Code | `claude --version && claude plugins list` | shows context7, claude-hud, skill-creator |
 | VS Code | `code --list-extensions \| wc -l` | >= 16 |
 | Claude profile | `ls ~/.claude/profiles/` | `glm.json` |
 
@@ -105,7 +105,7 @@ git clone https://github.com/amix/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/
 | Languages & tooling | python, uv, golangci-lint |
 | Kubernetes | kubectl |
 | Fonts | JetBrainsMono, DroidSansMono, Hack, Maple Mono — all Nerd Font variants |
-| Claude Code | CLI + 4 plugins (context7, claude-hud, karpathy-skills, skill-creator) |
+| Claude Code | CLI + 3 plugins (context7, claude-hud, skill-creator) |
 | VS Code | Installed via brew cask, 16 Go/Python extensions, additively merged settings |
 
 ### Manual
@@ -125,8 +125,9 @@ Claude Code is the centerpiece. It reads/writes files, runs shell commands, sear
 |---|---|
 | `context7` | Real-time library documentation (replaces stale training data) |
 | `claude-hud` | Status bar with tools, agents, todos, and timers |
-| `karpathy-skills` | Behavioral guardrails to reduce common LLM coding mistakes |
 | `skill-creator` | Build and iterate on custom skills |
+
+For behavioral guardrails, see [I Ching principles](i-ching-principles.md) — a lightweight alternative to skill plugins, added directly to your global CLAUDE.md.
 
 GitHub interactions (PRs, issues, search) default to the `gh` CLI — faster, lower token overhead. The GitHub MCP plugin is a fallback for operations that `gh` doesn't support yet.
 
