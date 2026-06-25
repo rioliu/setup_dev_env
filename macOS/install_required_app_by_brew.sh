@@ -2,7 +2,7 @@
 set -e
 
 # Core CLI
-for pkg in bash-completion coreutils wget curl tree jq git kubernetes-cli nmap python uv; do
+for pkg in bash-completion coreutils wget curl tree jq git kubernetes-cli nmap python uv node; do
   brew list --formula "$pkg" &>/dev/null && echo "$pkg already installed" || brew install "$pkg"
 done
 
