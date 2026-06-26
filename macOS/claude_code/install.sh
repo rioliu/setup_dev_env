@@ -1,14 +1,13 @@
 #!/bin/bash
 set -e
 
-if ! command -v brew &>/dev/null; then
-  echo "Error: Homebrew not found. Install it first:"
-  echo "  /bin/bash -c \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
+if ! command -v npm &>/dev/null; then
+  echo "Error: npm not found. Install Node.js first (e.g. brew install node)."
   exit 1
 fi
 
 echo "Installing Claude Code..."
-brew list --formula claude-code &>/dev/null && echo "claude-code already installed" || brew install claude-code
+npm list -g @anthropic-ai/claude-code &>/dev/null && echo "claude-code already installed" || npm install -g @anthropic-ai/claude-code
 
 echo "Installing plugins..."
 claude plugins list 2>/dev/null | grep -q "context7@claude-plugins-official" && echo "context7 already installed" || claude plugins install context7@claude-plugins-official
