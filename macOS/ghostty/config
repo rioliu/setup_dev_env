@@ -5,7 +5,7 @@ font-feature = calt
 font-feature = liga
 
 # Theme
-theme = Gruvbox Material Dark
+theme = Catppuccin Mocha
 
 # Window
 window-width = 130
