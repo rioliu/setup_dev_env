@@ -20,15 +20,16 @@ cd setup_dev_env
 ./setup.sh
 ```
 
-`setup.sh` runs five steps, each idempotent (safe to re-run):
+`setup.sh` runs six steps, each idempotent (safe to re-run):
 
 | Step | What it does |
 |---|---|
 | 1 — Homebrew | Installs the package manager (skips if present) |
-| 2 — CLI tools & apps | Installs git, ripgrep, fd, bat, jq, fzf, zoxide, starship, gh, ghostty, fonts, etc. |
+| 2 — CLI tools & apps | Installs git, ripgrep, fd, bat, jq, fzf, zoxide, starship, gh, ast-grep, xh, glab, podman, fonts, etc. |
 | 3 — Claude Code | Installs CLI + 4 plugins, merges settings into `~/.claude/settings.json` |
-| 4 — VS Code | Installs VS Code + 16 extensions, additively merges settings |
-| 5 — Configs | Deploys Ghostty, Starship, and Claude profile configs |
+| 4 — Pi agent | Installs the [Pi coding agent](https://pi.dev) via the official installer (skips if present) |
+| 5 — VS Code | Installs VS Code + 16 extensions, additively merges settings |
+| 6 — Configs | Deploys Ghostty, Starship, and Claude profile configs |
 
 ### 2. Shell profile
 
@@ -44,6 +45,9 @@ export ZHIPU_API_KEY="your-zhipu-key"
 Add to `~/.zshrc` (CLI tool init — loaded every shell):
 
 ```sh
+# Personal scripts + Pi agent symlink
+export PATH="$HOME/.local/bin:$PATH"
+
 # Starship prompt
 eval "$(starship init zsh)"
 
@@ -85,9 +89,10 @@ git clone https://github.com/amix/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/
 |---|---|---|
 | Homebrew | `brew --version` | version string |
 | CLI tools | `rg --version && fd --version && bat --version` | three version strings |
-| Starship | open a new shell tab | Catppuccin Mocha prompt with git info |
-| Ghostty | open Ghostty app | Gruvbox Dark Hard theme, Maple Mono font |
+| Starship | open a new shell tab | gruvbox-dark prompt with git info |
+| Ghostty | open Ghostty app | Catppuccin Mocha theme, Maple Mono font |
 | Claude Code | `claude --version && claude plugins list` | shows context7, claude-hud, skill-creator |
+| Pi agent | `pi --version` | version string |
 | VS Code | `code --list-extensions \| wc -l` | >= 16 |
 | Claude profile | `ls ~/.claude/profiles/` | `glm.json` |
 
@@ -101,11 +106,15 @@ git clone https://github.com/amix/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/
 | Shell | bash-completion, starship (prompt) |
 | Terminal | Ghostty (GPU-accelerated) |
 | Core CLI | git, curl, wget, jq, tree, coreutils, nmap |
-| Modern CLI | ripgrep, fd, bat, lsd, fzf, zoxide, bottom, tlrc, git-delta, lazygit, gh |
+| Modern CLI | ripgrep, fd, bat, lsd, fzf, zoxide, bottom, tlrc, git-delta, lazygit, gh, yazi |
+| Dev helpers | ast-grep, sd, gron, jd, yq, xh, glab |
+| Containers | podman, podman-compose |
+| Personal tap | zentao-cli-go, dbq (rioliu/tap) |
 | Languages & tooling | python, uv, golangci-lint |
-| Kubernetes | kubectl |
+| Kubernetes | kubectl, helm |
 | Fonts | JetBrainsMono, DroidSansMono, Hack, Maple Mono — all Nerd Font variants |
 | Claude Code | CLI + 3 plugins (context7, claude-hud, skill-creator) |
+| Pi agent | Official installer (`pi.dev/install.sh`), managed install under `~/.pi/agent` |
 | VS Code | Installed via brew cask, 16 Go/Python extensions, additively merged settings |
 
 ### Manual
@@ -131,6 +140,22 @@ For behavioral guardrails, see [I Ching principles](i-ching-principles.md) — a
 
 GitHub interactions (PRs, issues, search) default to the `gh` CLI — faster, lower token overhead. The GitHub MCP plugin is a fallback for operations that `gh` doesn't support yet.
 
+### Pi agent
+
+[Pi](https://pi.dev) is the second agent in the stack — installed by `setup.sh` (step 4) via the official installer into a managed layout under `~/.pi/agent` with a symlink at `~/.local/bin/pi`. The installer only runs when `pi` is not already on PATH, so re-runs are safe.
+
+```sh
+pi --version   # verify
+pi update       # upgrade to the latest release
+```
+
+First run is interactive:
+
+- `/login` — choose a provider (subscription, API key, or local model)
+- `/model` — switch models
+
+Pi reads `AGENTS.md` files for instructions (project-level `AGENTS.md`/`CLAUDE.md`, plus the global `~/.pi/agent/AGENTS.md`). Its tooling complements Claude Code: extensions, skills, prompt templates, and themes live under `~/.pi/agent/` — see the [Pi docs](https://pi.dev) for details.
+
 ### Permissions
 
 `macOS/claude_code/settings.json` configures `permissions.defaultMode: "auto"`, which skips all permission prompts. The `permissions.allow` list is a **fallback** — if you switch back to `"default"` mode (via `/config`), pre-approved safe operations (read-only, git) won't prompt. Destructive operations still require approval in default mode.
@@ -139,7 +164,7 @@ GitHub interactions (PRs, issues, search) default to the `gh` CLI — faster, lo
 
 Default routes through Anthropic. To switch to a different provider, edit `~/.claude/settings.json` and add an `env` block.
 
-`setup.sh` (step 5) deploys reference templates from `macOS/claude_code/profiles/` to `~/.claude/profiles/` so you can copy the `env` block from. Existing files are never overwritten.
+`setup.sh` (step 6) deploys reference templates from `macOS/claude_code/profiles/` to `~/.claude/profiles/` so you can copy the `env` block from. Existing files are never overwritten.
 
 **To switch from Anthropic to GLM:**
 
@@ -204,15 +229,15 @@ First time opening a `.go` file, the Go extension will prompt to install `gopls`
 
 ## Terminal (Ghostty)
 
-GPU-accelerated, config at `macOS/ghostty/config`. Deployed automatically by `setup.sh` (step 5).
+GPU-accelerated, config at `macOS/ghostty/config`. Deployed automatically by `setup.sh` (step 6).
 
-Key settings: Maple Mono NF CN at 13px, Gruvbox Dark Hard theme, 130x50 window, 10k-line scrollback. iTerm2 profile is kept as a legacy fallback at `macOS/iterm2/profile.json`.
+Key settings: Maple Mono NF CN at 13px, Catppuccin Mocha theme, 130x50 window, 10k-line scrollback. iTerm2 profile is kept as a legacy fallback at `macOS/iterm2/profile.json`.
 
 ## Shell prompt (Starship)
 
-Config at `macOS/starship/starship.toml`. Deployed automatically by `setup.sh` (step 5).
+Config at `macOS/starship/starship.toml`. Deployed automatically by `setup.sh` (step 6).
 
-Shows OS, user, path, git branch/status, active language runtimes (Go, Python, Rust, Node, Java, etc.), and command duration. Catppuccin Mocha palette.
+Shows OS, user, path, git branch/status, active language runtimes (Go, Python, Rust, Node, Java, etc.), and command duration. Gruvbox Dark palette (rainbow preset).
 
 ## Design decisions
 
